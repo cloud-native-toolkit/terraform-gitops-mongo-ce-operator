@@ -1,0 +1,8 @@
+name: gitops-mongo-ce
+type: gitops
+description: Module to populate a gitops repo with the resources to provision mongo-ce
+tags:
+  - tools
+  - gitops
+versions: []
+id: github.com/cloud-native-toolkit/terraform-gitops-mongo-ce
