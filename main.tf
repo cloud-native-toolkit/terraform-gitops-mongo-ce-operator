@@ -62,7 +62,6 @@ module "service_account" {
   name = var.mongo_serviceaccount
   sccs = ["anyuid"]
   server_name = var.server_name
-  create = true
 }
 
 resource null_resource setup_gitops_destroy {
