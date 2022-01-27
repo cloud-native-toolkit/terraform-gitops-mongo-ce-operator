@@ -255,9 +255,5 @@ resource "null_resource" "deploy_certs" {
   }
 }
 
-data "local_file" "svcname" {
-    depends_on = [null_resource.setup_gitops]
-    
-    filename = "${local.tmp_dir}/mas-svc-name"
-}
+
 

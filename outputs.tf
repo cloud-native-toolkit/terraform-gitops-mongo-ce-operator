@@ -41,8 +41,4 @@ output "mongo_pw" {
   depends_on  = [null_resource.setup_gitops]
 }
 
-output "mongo_servicename" {
-  description = "Name of mongo service to connect to"
-  depends_on  = [null_resource.setup_gitops]
-  value = data.local_file.svcname
-}
+
