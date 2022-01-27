@@ -14,7 +14,7 @@ locals {
         }
       mongo-ce-mongodbcommunity = {
           version = ""
-          storageclassname = var.mongo_storageclas
+          storageclassname = var.mongo_storageclass
         }
     }    
   }
@@ -113,7 +113,7 @@ resource "tls_self_signed_cert" "ca" {
   set_subject_key_id = true
 
   subject {
-    common_name  = "*.mas-mongo-ce-svc.${var.mongo_namespace}.svc.cluster.local"
+    common_name  = "*.mas-mongo-ce-svc.${var.namespace}.svc.cluster.local"
     organization = "Example, LLC"
   }
   
@@ -139,7 +139,7 @@ resource "tls_self_signed_cert" "ca" {
     "timestamping",
     "ocsp_signing"
   ]
-  dns_names = [ "*.mas-mongo-ce-svc.${var.mongo_namespace}.svc.cluster.local","127.0.0.1","localhost" ]
+  dns_names = [ "*.mas-mongo-ce-svc.${var.namespace}.svc.cluster.local","127.0.0.1","localhost" ]
 
 }
 
@@ -160,10 +160,10 @@ resource "tls_cert_request" "cert" {
   key_algorithm   = "${tls_private_key.cert.algorithm}"
   private_key_pem = "${tls_private_key.cert.private_key_pem}"
 
-  dns_names = [ "*.mas-mongo-ce-svc.${var.mongo_namespace}.svc.cluster.local","127.0.0.1","localhost" ]
+  dns_names = [ "*.mas-mongo-ce-svc.${var.namespace}.svc.cluster.local","127.0.0.1","localhost" ]
 
   subject {
-    common_name  = "*.mas-mongo-ce-svc.${var.mongo_namespace}.svc.cluster.local"
+    common_name  = "*.mas-mongo-ce-svc.${var.namespace}.svc.cluster.local"
     organization = "Example, LLC"
   }
 }
