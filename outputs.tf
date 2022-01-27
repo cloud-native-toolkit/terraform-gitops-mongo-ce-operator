@@ -36,10 +36,13 @@ output "type" {
 }
 
 output "mongo_pw" {
-  value       = var.mongo_password
+  value       = local.mongo_password
   description = "mongo admin pw"
+  depends_on  = [null_resource.setup_gitops]
 }
 
 output "mongo_servicename" {
   description = "Name of mongo service to connect to"
+  depends_on  = [null_resource.setup_gitops]
+  vaue = local.mongo_servicename
 }
