@@ -36,7 +36,7 @@ output "type" {
 }
 
 output "mongo_pw" {
-  value       = local.mongo_password
+  value       = var.mongo_password
   description = "mongo admin pw"
   depends_on  = [null_resource.setup_gitops]
 }
@@ -44,5 +44,5 @@ output "mongo_pw" {
 output "mongo_servicename" {
   description = "Name of mongo service to connect to"
   depends_on  = [null_resource.setup_gitops]
-  value = local.mongo_servicename
+  value = data.local_file.svcname
 }
