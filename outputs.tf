@@ -44,5 +44,5 @@ output "mongo_pw" {
 output "mongo_servicename" {
   description = "Name of mongo service to connect to"
   depends_on  = [null_resource.setup_gitops]
-  vaue = local.mongo_servicename
+  value = local.mongo_servicename
 }
