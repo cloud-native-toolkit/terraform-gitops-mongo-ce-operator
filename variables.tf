@@ -65,7 +65,7 @@ variable "git_credentials" {
 
 variable "namespace" {
   type        = string
-  description = "The namespace where the application should be deployed"
+  description = "The namespace where the mongo-ce should be deployed"
 }
 
 variable "kubeseal_cert" {
@@ -79,6 +79,12 @@ variable "server_name" {
   description = "The name of the server"
   default     = "default"
 }
+
+variable "cluster_config_file" {
+  type        = string
+  description = "Cluster config file for Kubernetes cluster."
+}
+
 variable "mongo_storageclass" {
   type        = string
   description = "Storageclass for MongoDB"
@@ -96,5 +102,12 @@ variable "mongo_password" {
   description = "admin password for mongodb"
   default = "changeMechange01"
 }
+
+variable "mongo_version" {
+  type        = string
+  description = "version for mongodb to be installed"
+  default = "4.2.6"
+}
+
 
 
