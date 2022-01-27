@@ -7,6 +7,6 @@ module "gitops_module" {
   server_name = module.gitops.server_name
   namespace = module.gitops_namespace.name
   kubeseal_cert = module.gitops.sealed_secrets_cert
-  mongo_storageclass = "ibmc-vpc-block-5iops-tier" #Y hardcoded?
+  mongo_storageclass = "ibmc-vpc-block-5iops-tier" 
 }
 
