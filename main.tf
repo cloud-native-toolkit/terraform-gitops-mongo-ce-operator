@@ -219,7 +219,7 @@ resource null_resource setup_gitops_destroy {
 
 
 
-resource "null_resource" "deploy_certs" {
+/*resource "null_resource" "deploy_certs" {
   depends_on = [null_resource.setup_gitops]
   triggers = {
     kubeconfig = var.cluster_config_file
@@ -243,7 +243,7 @@ resource "null_resource" "deploy_certs" {
       KUBECONFIG = self.triggers.kubeconfig
     }
   }
-}
+}*/
 
 
 
