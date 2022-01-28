@@ -4,7 +4,7 @@ name:
 spec:
   members: 3
   type: ReplicaSet
-  version: ${version} #"4.2.6"
+  version: {{ .Values.mongo-ce.mongo-ce-mongodbcommunity.version }}
   security:
     tls:
       enabled: true
@@ -50,7 +50,7 @@ spec:
             name: data-volume
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: ${STORCLASS}
+            storageClassName: {{ .Values.mongo-ce.mongo-ce-mongodbcommunity.storageclassname }}
             resources:
               requests:
                 storage: "20Gi"
@@ -58,7 +58,7 @@ spec:
             name: logs-volume
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: ${STORCLASS}
+            storageClassName: {{ .Values.mongo-ce.mongo-ce-mongodbcommunity.storageclassname }}
             resources:
               requests:
                 storage: "2Gi"
