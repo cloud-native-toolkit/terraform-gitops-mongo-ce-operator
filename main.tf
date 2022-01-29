@@ -219,31 +219,4 @@ resource null_resource setup_gitops_destroy {
 
 
 
-/*resource "null_resource" "deploy_certs" {
-  depends_on = [null_resource.setup_gitops]
-  triggers = {
-    kubeconfig = var.cluster_config_file
-    namespace = var.namespace
-    certpath = local.tmp_dir
-  }
-  provisioner "local-exec" {
-    when = destroy
-    command = "kubectl delete configmap mas-mongo-ce-cert-map -n ${self.triggers.namespace}"
-
-    environment = {
-      KUBECONFIG = self.triggers.kubeconfig
-    }
-  }
-
-  provisioner "local-exec" {
-    when = destroy
-    command = "kubectl delete secret mas-mongo-ce-cert-secret -n ${self.triggers.namespace}"
-
-    environment = {
-      KUBECONFIG = self.triggers.kubeconfig
-    }
-  }
-}*/
-
-
 
