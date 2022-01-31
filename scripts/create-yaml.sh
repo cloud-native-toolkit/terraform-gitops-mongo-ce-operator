@@ -6,6 +6,7 @@ CHART_DIR=$(cd "${MODULE_DIR}/chart/${NAME}"; pwd -P)
 NAME="$1"
 DEST_DIR="$2"
 mkdir -p "${DEST_DIR}"
+VALUES_FILE="values.yaml"
 ## Add logic here to put the yaml resource content in DEST_DIR 
 cp -R "${CHART_DIR}"/* "${DEST_DIR}"
 ##if [[ -n "${VALUES_FILE}" ]] && [[ -n "${VALUES_CONTENT}" ]]; then
