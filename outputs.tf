@@ -35,6 +35,7 @@ output "type" {
   depends_on  = [null_resource.setup_gitops]
 }
 
+
 output "mongo_pw" {
   value       = var.mongo_password
   description = "mongo admin pw"

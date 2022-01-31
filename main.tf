@@ -171,6 +171,7 @@ resource null_resource setup_gitops {
   }
 }
 
+
 module "service_account" {
   source = "github.com/cloud-native-toolkit/terraform-gitops-service-account.git"
 
@@ -181,6 +182,7 @@ module "service_account" {
   sccs = ["anyuid"]
   server_name = var.server_name
 }
+
 
 resource null_resource setup_gitops_destroy {
   depends_on = [null_resource.create_yaml]

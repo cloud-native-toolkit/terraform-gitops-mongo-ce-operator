@@ -33,3 +33,4 @@ jobs:
           gh repo delete ${GIT_SLUG} --confirm
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ADMIN_TOKEN }}
+
