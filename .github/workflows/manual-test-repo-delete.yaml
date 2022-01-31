@@ -38,4 +38,6 @@ jobs:
             echo "You cannot delete the current repository!!!!"
             exit 1
           fi
+
           gh repo delete ${GIT_SLUG} --confirm
+
