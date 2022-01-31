@@ -112,9 +112,9 @@ kind: ClusterRoleBinding
 name: 
 subjects:
 - kind: ServiceAccount
-  name: {{ .Values.mongo-ce.name }}
-  namespace: {{ .Values.mongo-ce.namespace }}
+  name: {{ .Values.mongoce.name }}
+  namespace: {{ .Values.mongoce.namespace }}
 roleRef:
   kind: ClusterRole
-  name: {{ .Values.mongo-ce.saname }}
+  name: {{ .Values.mongoce.saname }}
   apiGroup: rbac.authorization.k8s.io

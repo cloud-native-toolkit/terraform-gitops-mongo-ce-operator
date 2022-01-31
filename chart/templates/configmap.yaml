@@ -2,4 +2,4 @@ apiVersion: v1
 kind: ConfigMap
 name: mas-mongo-ce-cert-map
 data:
-  ca.crt: {{ .Values.mongo-ce.mongo-ce-cm.ca-crt }}
+  ca.crt: {{ .Values.mongoce.mongocecm.cacrt }}

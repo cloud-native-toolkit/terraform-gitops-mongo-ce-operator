@@ -5,13 +5,13 @@ metadata:
     email: support@mongodb.com
   labels:
     owner: mongodb
-  name: {{ .Values.mongo-ce.saname }}
-  namespace: {{ .Values.mongo-ce.namespace }}
+  name: {{ .Values.mongoce.saname }}
+  namespace: {{ .Values.mongoce.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: {{ .Values.mongo-ce.saname }}
+      name: {{ .Values.mongoce.saname }}
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        name: {{ .Values.mongo-ce.saname }}
+        name: {{ .Values.mongoce.saname }}
     spec:
       affinity:
         podAntiAffinity:
@@ -29,7 +29,7 @@ spec:
               - key: name
                 operator: In
                 values:
-                - {{ .Values.mongo-ce.saname }}
+                - {{ .Values.mongoce.saname }}
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
@@ -44,11 +44,11 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: OPERATOR_NAME
-          value: {{ .Values.mongo-ce.saname }}
+          value: {{ .Values.mongoce.saname }}
         - name: AGENT_IMAGE
           value: quay.io/mongodb/mongodb-agent:11.0.5.6963-1
         - name: VERSION_UPGRADE_HOOK_IMAGE
-          value: quay.io/mongodb/{{ .Values.mongo-ce.saname }}-version-upgrade-post-start-hook:1.0.2
+          value: quay.io/mongodb/{{ .Values.mongoce.saname }}-version-upgrade-post-start-hook:1.0.2
         - name: READINESS_PROBE_IMAGE
           value: quay.io/mongodb/mongodb-kubernetes-readinessprobe:1.0.4
         - name: MONGODB_IMAGE
@@ -57,7 +57,7 @@ spec:
           value: docker.io
         image: quay.io/mongodb/mongodb-kubernetes-operator:0.7.0
         imagePullPolicy: Always
-        name: {{ .Values.mongo-ce.saname }}
+        name: {{ .Values.mongoce.saname }}
         resources:
           limits:
             cpu: 1100m
@@ -68,4 +68,4 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           runAsUser: 2000
-      serviceAccountName: {{ .Values.mongo-ce.saname }}
+      serviceAccountName: {{ .Values.mongoce.saname }}

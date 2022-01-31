@@ -5,22 +5,22 @@ locals {
   service_url   = "http://${local.name}.${var.namespace}"
   tmp_dir = "${path.cwd}/.tmp/${local.name}"
   values_content = {  
-    mongo-ce = {
+    mongoce = {
       name = "mongo-ce"
       saname = var.mongo_serviceaccount
       namespace= var.namespace
-      mongo-ce-secret = {
+      mongocesecret = {
           password= var.mongo_password
           crt = "${local.tmp_dir}/server.crt"
           key = "${local.tmp_dir}/server.key"
 
         }
-      mongo-ce-mongodbcommunity = {
+      mongocemongodbcommunity = {
           version = var.mongo_version
           storageclassname = var.mongo_storageclass
         }
-      mongo-ce-cm = {
-        ca-crt = "${local.tmp_dir}/ca.pem"
+      mongocecm = {
+        cacrt = "${local.tmp_dir}/ca.pem"
       }
     }    
   }
