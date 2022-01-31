@@ -39,7 +39,7 @@ resource null_resource setup_gitops {
   }
 }
 
-resource null_resource setup_gitops {
+resource null_resource setup_gitops_destroy {
   depends_on = [null_resource.create_yaml]
 
   triggers = {
