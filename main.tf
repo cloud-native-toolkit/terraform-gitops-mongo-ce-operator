@@ -11,8 +11,8 @@ locals {
       namespace= var.namespace
       mongocesecret = {
           password= var.mongo_password
-          crt = "${local.tmp_dir}/server.crt"
-          key = "${local.tmp_dir}/server.key"
+          crt = "${local_file.srvcrtfile.filename}"
+          key = "${local_file.srvkeyfile.filename}"
 
         }
       mongocemongodbcommunity = {
@@ -20,7 +20,7 @@ locals {
           storageclassname = var.mongo_storageclass
         }
       mongocecm = {
-        cacrt = "${local.tmp_dir}/ca.pem"
+        cacrt = "${local_file.cafile.filename}"
       }
     }    
   }
