@@ -12,7 +12,7 @@ locals {
       mongocesecret = {
           password= var.mongo_password
           crt = "${local_file.srvcrtfile.sensitive_content}"
-          key = "            ${local_file.srvkeyfile.sensitive_content}"
+          key = "${local_file.srvkeyfile.sensitive_content}"
 
         }
       mongocemongodbcommunity = {
@@ -20,7 +20,7 @@ locals {
           storageclassname = var.mongo_storageclass
         }
       mongocecm = {
-        cacrt = "            ${local_file.cafile.sensitive_content}"
+        cacrt = "${local_file.cafile.sensitive_content}"
       }
     }    
   }
