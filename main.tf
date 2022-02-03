@@ -11,8 +11,8 @@ locals {
       namespace= var.namespace
       mongocesecret = {
           password= var.mongo_password
-          crt = "echo -n ${local_file.srvcrtfile.sensitive_content}"
-          key = "echo -n ${local_file.srvkeyfile.sensitive_content}"
+          crt =  "${tls_locally_signed_cert.cert.cert_pem}"
+          key = "${tls_private_key.cert.private_key_pem}"
 
         }
       mongocemongodbcommunity = {
@@ -20,7 +20,7 @@ locals {
           storageclassname = var.mongo_storageclass
         }
       mongocecm = {
-        cacrt = "echo -n ${local_file.cafile.sensitive_content}| base 64"
+        cacrt = "${tls_self_signed_cert.ca.cert_pem}"
       }
     }    
   }

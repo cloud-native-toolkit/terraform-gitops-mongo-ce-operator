@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: mas-mongo-ce-cert-map
 data: |
-    {{- .Values.mongoce.mongocecm.cacrt|nindent 4 }}
+    {{- .Values.mongoce.mongocecm.cacrt }}
   
