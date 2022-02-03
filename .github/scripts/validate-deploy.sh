@@ -54,13 +54,14 @@ fi
 
 count=0
 until kubectl get crd "${CRD_NAME}"  || [[ $count -eq 20 ]]; do
+until kubectl get deployment  -n "${NAMESPACE}"|| [[ $count -eq 20 ]]; 
   echo "Waiting for crd/${CRD_NAME} "
   count=$((count + 1))
   sleep 15
 done
 
 if [[ $count -eq 20 ]]; then
-  echo "Timed out waiting for deployment/${CRD_NAME} "
+  echo "Timed out waiting for crd/${CRD_NAME} "
   kubectl get all -n "${NAMESPACE}"
   exit 1
 fi
