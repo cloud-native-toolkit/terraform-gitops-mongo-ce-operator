@@ -12,8 +12,8 @@ locals {
       namespace= var.namespace
       mongocesecret = {
           password= var.mongo_password
-          crt =  "${local_file.srvcrtfile.sensitive_content}"
-          key = "${local_file.srvkeyfile.sensitive_content}"
+          crt =  base64encode("${local_file.srvcrtfile.sensitive_content}")
+          key = base64encode("${local_file.srvkeyfile.sensitive_content}")
 
         }
       mongocemongodbcommunity = {
