@@ -109,5 +109,11 @@ variable "mongo_version" {
   default = "4.2.6"
 }
 
+variable "crdname" {
+  type        = string
+  description = "Name of the CRD to be installed"
+  default = "mongodbcommunity.mongodbcommunity.mongodb.com"
+}
+
 
 

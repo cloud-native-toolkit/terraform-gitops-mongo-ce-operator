@@ -7,6 +7,7 @@ locals {
   values_content = {  
     mongoce = {
       name = "mongo-ce"
+      crdname = var.crdname
       saname = var.mongo_serviceaccount
       namespace= var.namespace
       mongocesecret = {
