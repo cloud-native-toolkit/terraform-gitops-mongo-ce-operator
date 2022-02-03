@@ -11,8 +11,8 @@ locals {
       namespace= var.namespace
       mongocesecret = {
           password= var.mongo_password
-          crt =  base64encode("${tls_locally_signed_cert.cert.cert_pem}")
-          key = base64encode("${tls_private_key.cert.private_key_pem}")
+          crt =  filebase64("${local.tmp_dir}/server.crt")
+          key = filebase64("${local.tmp_dir}/server.key")
 
         }
       mongocemongodbcommunity = {
