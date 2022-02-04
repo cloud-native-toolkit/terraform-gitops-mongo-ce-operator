@@ -64,7 +64,6 @@ if [[ $count -eq 20 ]]; then
   exit 1
 fi
 
-kubectl rollout status "crd/${CRD_NAME}"  || exit 1
 
 cd ..
 rm -rf .testrepo
