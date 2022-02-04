@@ -53,7 +53,7 @@ fi
 
 
 count=0
-until kubectl get crd "${CRD_NAME}"  || [[ $count -eq 20 ]]; do
+until kubectl get crd ${CRD_NAME}  || [[ $count -eq 20 ]]; do
   echo "Waiting for crd/${CRD_NAME} "
   count=$((count + 1))
   sleep 15
