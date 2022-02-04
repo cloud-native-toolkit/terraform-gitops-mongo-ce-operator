@@ -167,7 +167,7 @@ module "service_account" {
   name = var.mongo_serviceaccount
   sccs = ["anyuid"]
   server_name = var.server_name
-  cluster_scope = true
+  rbac_cluster_scope = true
   rbac_rules = [{
     apiGroups = [
       "",
