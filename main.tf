@@ -181,7 +181,7 @@ module "service_account" {
     ]
     resourceNames = [
       "mongodb-kubernetes-operator",
-      "${service_account.namespace}-${service_account.name}-anyuid"
+      "${var.namespace}-${var.mongo_serviceaccount}-anyuid"
 
     ]
     resources = [
