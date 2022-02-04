@@ -158,21 +158,6 @@ resource null_resource create_yaml {
     }
   }
 }
-
-resource null_resource setup_gitops {
-  depends_on = [null_resource.create_yaml]
-
-  provisioner "local-exec" {
-    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type '${local.type}' --debug"
-
-    environment = {
-      GIT_CREDENTIALS = yamlencode(nonsensitive(var.git_credentials))
-      GITOPS_CONFIG   = yamlencode(var.gitops_config)
-    }
-  }
-}
-
-
 module "service_account" {
   source = "github.com/cloud-native-toolkit/terraform-gitops-service-account.git"
 
@@ -233,6 +218,22 @@ module "service_account" {
     ]
   }]
 }
+
+resource null_resource setup_gitops {
+  depends_on = [null_resource.create_yaml,module.service_account]
+
+  provisioner "local-exec" {
+    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type '${local.type}' --debug"
+
+    environment = {
+      GIT_CREDENTIALS = yamlencode(nonsensitive(var.git_credentials))
+      GITOPS_CONFIG   = yamlencode(var.gitops_config)
+    }
+  }
+}
+
+
+
 
 
 
