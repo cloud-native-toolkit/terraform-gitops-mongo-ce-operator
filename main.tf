@@ -182,6 +182,56 @@ module "service_account" {
   name = var.mongo_serviceaccount
   sccs = ["anyuid"]
   server_name = var.server_name
+  cluster_scope = true
+  rbac_rules = [{
+    apiGroups = [
+      "",
+      "apps",
+      "monitoring.coreos.com",
+      "rbac.authorization.k8s.io",
+      "mongodbcommunity.mongodb.com",
+      "security.openshift.io",
+
+
+    ]
+    resourceNames = [
+      "mongodb-kubernetes-operator",
+      "${namespace}-${name}-anyuid"
+
+    ]
+    resources = [
+      "pods",
+      "services",
+      "serviceaccounts",
+      "services/finalizers",
+      "endpoints",
+      "persistentvolumeclaims",
+      "events",
+      "configmaps",
+      "secrets",
+      "deployments",
+      "daemonsets",
+      "replicasets",
+       "statefulsets",
+       "servicemonitors",
+       "deployments/finalizers",
+       "clusterrolebindings",
+       "clusterroles",
+       "rolebindings",
+       "roles",
+       "namespaces",
+       "replicasets",
+       "mongodbcommunity",
+       "mongodbcommunity/status",
+       "mongodbcommunity/spec",
+       "mongodbcommunity/finalizers",
+       "securitycontextconstraints"
+       
+    ]
+    verbs = [
+      "*"
+    ]
+  }]
 }
 
 

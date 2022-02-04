@@ -59,7 +59,6 @@ until  [[ $count -eq 20 ]]; do
   sleep 15
 done
 if [[ $count -eq 20 ]]; then
-  echo "Timed out waiting for crd/${CRD_NAME} "
   kubectl get all -n "${NAMESPACE}"
   exit 1
 fi
