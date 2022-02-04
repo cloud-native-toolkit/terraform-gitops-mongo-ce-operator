@@ -52,13 +52,12 @@ else
 fi
 
 
+
 count=0
-until kubectl get crd ${CRD_NAME}  || [[ $count -eq 20 ]]; do
-  echo "Waiting for crd/${CRD_NAME} "
+until  [[ $count -eq 20 ]]; do
   count=$((count + 1))
   sleep 15
 done
-
 if [[ $count -eq 20 ]]; then
   echo "Timed out waiting for crd/${CRD_NAME} "
   kubectl get all -n "${NAMESPACE}"
