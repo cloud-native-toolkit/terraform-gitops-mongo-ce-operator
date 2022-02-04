@@ -16,7 +16,7 @@ variable "server_url" {
 
 variable "bootstrap_prefix" {
   type = string
-  default = "gitops-mongo"
+  default = "gitops-mongo-ce"
 }
 
 variable "namespace" {
