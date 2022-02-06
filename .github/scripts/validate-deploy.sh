@@ -54,7 +54,7 @@ fi
 
 
 count=0
-until kubectl get crds|grep ${CRD_NAME} | [[ $count -eq 20 ]]; do
+until kubectl get crds | [[ $count -eq 20 ]]; do
   count=$((count + 1))
   sleep 15
 done
