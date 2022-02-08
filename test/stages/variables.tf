@@ -22,7 +22,7 @@ variable "bootstrap_prefix" {
 variable "namespace" {
   type        = string
   description = "Namespace for tools"
-  default = "gitops-mongo-ce"
+  default = "gitops-mongo-ce-crd"
 }
 
 variable "cluster_name" {
