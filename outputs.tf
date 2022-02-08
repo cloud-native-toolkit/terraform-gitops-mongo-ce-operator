@@ -43,6 +43,7 @@ output "mongo_pw" {
 }
 
 output "mongo_sa" {
+  value       = var.mongo_serviceaccount
   description = "Name of the service account to use for mongo"
   depends_on  = [null_resource.setup_gitops]
 }
