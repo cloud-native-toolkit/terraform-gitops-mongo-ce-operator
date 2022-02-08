@@ -42,7 +42,7 @@ output "mongo_pw" {
   depends_on  = [null_resource.setup_gitops]
 }
 
-variable "mongo_sa" {
+output "mongo_sa" {
   type        = string
   description = "Name of the service account to use for mongo"
   depends_on  = [null_resource.setup_gitops]
