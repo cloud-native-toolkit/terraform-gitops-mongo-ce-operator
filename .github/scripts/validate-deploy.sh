@@ -4,7 +4,7 @@ GIT_REPO=$(cat git_repo)
 GIT_TOKEN=$(cat git_token)
 
 export KUBECONFIG=$(cat .kubeconfig)
-NAMESPACE="gitops-mongo-ce-crd"
+NAMESPACE=$(cat .namespace)
 COMPONENT_NAME=$(jq -r '.name // "mongo-ce"' gitops-output.json)
 BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
