@@ -13,6 +13,8 @@ resource null_resource write_outputs {
         layer_dir   = module.gitops_module.layer == "infrastructure" ? "1-infrastructure" : (module.gitops_module.layer == "services" ? "2-services" : "3-applications")
         type        = module.gitops_module.type
         mongo_password = module.gitops_module.mongo_pw
+        mongo_serviceaccount = module.gitops_module.mongo_sa
+
         
 
       })
