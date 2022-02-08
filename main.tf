@@ -2,14 +2,13 @@ locals {
   name          = "mongo-ce"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart"
-  service_url   = "http://${local.name}.${var.namespace}"
   tmp_dir = "${path.cwd}/.tmp/${local.name}"
   values_content = {  
     mongoce = {
       name = "mongo-ce"
       crdname = var.crdname
       saname = var.mongo_serviceaccount
-      namespace= var.namespace
+      namespace = var.namespace
       mongocesecret = {
           crt =  base64encode("${local_file.srvcrtfile.sensitive_content}")
           key = base64encode("${local_file.srvkeyfile.sensitive_content}")
@@ -220,7 +219,7 @@ resource null_resource setup_gitops {
   //depends_on = [null_resource.create_yaml,module.service_account]
 
   provisioner "local-exec" {
-    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type '${local.type}' --valueFiles 'values.yaml,${local.values_file}' --debug"
+    command = "${local.bin_dir}/igc gitops-module '${local.name}' -n '${var.namespace}' --contentDir '${local.yaml_dir}' --serverName '${var.server_name}' -l '${local.layer}' --type '${local.type}'"
 
     environment = {
       GIT_CREDENTIALS = yamlencode(nonsensitive(var.git_credentials))
