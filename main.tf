@@ -11,14 +11,9 @@ locals {
       saname = var.mongo_serviceaccount
       namespace= var.namespace
       mongocesecret = {
-          password= var.mongo_password
           crt =  base64encode("${local_file.srvcrtfile.sensitive_content}")
           key = base64encode("${local_file.srvkeyfile.sensitive_content}")
 
-        }
-      mongocemongodbcommunity = {
-          version = var.mongo_version
-          storageclassname = var.mongo_storageclass
         }
       mongocecm = {
         cacrt = "${tls_self_signed_cert.ca.cert_pem}"
