@@ -58,6 +58,9 @@ until kubectl get crds | [[ $count -eq 20 ]]; do
   count=$((count + 1))
   sleep 15
 done
+
+sleep 120
+
 if [[ $count -eq 20 ]]; then
   kubectl get all -n "${NAMESPACE}"
   exit 1
