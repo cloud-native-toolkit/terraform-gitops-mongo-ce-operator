@@ -51,21 +51,34 @@ else
   sleep 30
 fi
 
-
-
 count=0
-until kubectl get crds | [[ $count -eq 20 ]]; do
+until kubectl get crds "mongodbcommunity.mongodbcommunity.mongodb.com" 1> /dev/null 2> /dev/null || [[ $count -eq 20 ]]; do
   count=$((count + 1))
   sleep 15
 done
-
-sleep 120
 
 if [[ $count -eq 20 ]]; then
   kubectl get all -n "${NAMESPACE}"
   exit 1
 fi
 
+RESOURCES="deployment/mongodb-kubernetes-operator"
+for resource in $RESOURCES; do
+  count=0
+  until kubectl get "${resource}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
+    echo "Waiting for ${resource} in ${NAMESPACE}"
+    count=$((count + 1))
+    sleep 15
+  done
+
+  if [[ $count -eq 20 ]]; then
+    echo "Timed out waiting for ${resource} in ${NAMESPACE}"
+    kubectl get all -n "${NAMESPACE}"
+    exit 1
+  fi
+
+  kubectl rollout status "${resource}" -n "${NAMESPACE}"
+done
 
 cd ..
 rm -rf .testrepo
