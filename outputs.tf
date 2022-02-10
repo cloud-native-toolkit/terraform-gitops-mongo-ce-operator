@@ -36,5 +36,16 @@ output "type" {
 }
 
 
+output "mongo_pw" {
+  value       = var.mongo_password
+  description = "mongo admin pw"
+  depends_on  = [null_resource.setup_gitops]
+}
+
+output "mongo_sa" {
+  value       = var.mongo_serviceaccount
+  description = "Name of the service account to use for mongo"
+  depends_on  = [null_resource.setup_gitops]
+}
 
 

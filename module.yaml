@@ -1,6 +1,6 @@
-name: gitops-mongo-ce
+name: gitops-mongo-ce-operator
 type: gitops
-description: Module to populate a gitops repo with the resources to provision mongo-ce
+description: Module to populate a gitops repo with the resources to provision mongo-ce operator
 tags:
   - tools
   - gitops

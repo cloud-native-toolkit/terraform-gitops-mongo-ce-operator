@@ -10,6 +10,7 @@ BRANCH=$(jq -r '.branch // "main"' gitops-output.json)
 SERVER_NAME=$(jq -r '.server_name // "default"' gitops-output.json)
 LAYER=$(jq -r '.layer_dir // "2-services"' gitops-output.json)
 TYPE=$(jq -r '.type // "base"' gitops-output.json)
+CRD_NAME="mongodbcommunity.mongodbcommunity.mongodb.com"
 
 mkdir -p .testrepo
 
@@ -50,21 +51,34 @@ else
   sleep 30
 fi
 
-DEPLOYMENT="${COMPONENT_NAME}-${BRANCH}"
 count=0
-until kubectl get deployment "${DEPLOYMENT}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
-  echo "Waiting for deployment/${DEPLOYMENT} in ${NAMESPACE}"
+until kubectl get crds "mongodbcommunity.mongodbcommunity.mongodb.com" 1> /dev/null 2> /dev/null || [[ $count -eq 20 ]]; do
   count=$((count + 1))
   sleep 15
 done
 
 if [[ $count -eq 20 ]]; then
-  echo "Timed out waiting for deployment/${DEPLOYMENT} in ${NAMESPACE}"
   kubectl get all -n "${NAMESPACE}"
   exit 1
 fi
 
-kubectl rollout status "deployment/${DEPLOYMENT}" -n "${NAMESPACE}" || exit 1
+RESOURCES="deployment/mongodb-kubernetes-operator"
+for resource in $RESOURCES; do
+  count=0
+  until kubectl get "${resource}" -n "${NAMESPACE}" || [[ $count -eq 20 ]]; do
+    echo "Waiting for ${resource} in ${NAMESPACE}"
+    count=$((count + 1))
+    sleep 15
+  done
+
+  if [[ $count -eq 20 ]]; then
+    echo "Timed out waiting for ${resource} in ${NAMESPACE}"
+    kubectl get all -n "${NAMESPACE}"
+    exit 1
+  fi
+
+  kubectl rollout status "${resource}" -n "${NAMESPACE}"
+done
 
 cd ..
 rm -rf .testrepo

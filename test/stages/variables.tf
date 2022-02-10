@@ -16,12 +16,13 @@ variable "server_url" {
 
 variable "bootstrap_prefix" {
   type = string
-  default = ""
+  default = "gitops-mongo-ce-crd"
 }
 
 variable "namespace" {
   type        = string
   description = "Namespace for tools"
+  default = "gitops-mongo-ce-crd"
 }
 
 variable "cluster_name" {
