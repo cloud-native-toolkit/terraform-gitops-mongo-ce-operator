@@ -9,7 +9,7 @@ locals {
     rbac = false
   }
   layer = "services"
-  type  = "operators"
+  type  = "base"
   application_branch = "main"
   namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
