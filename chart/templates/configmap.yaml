@@ -1,8 +1,0 @@
-{{- if .Values.mongocecm.cacrt }}
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mas-mongo-ce-cert-map
-data:
-  ca.crt: {{- $.Values.mongocecm.cacrt | nindent 4 }}
-{{- end }}
