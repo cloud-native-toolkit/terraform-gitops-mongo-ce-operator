@@ -4,20 +4,15 @@ locals {
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart"
   tmp_dir = "${path.cwd}/.tmp/${local.name}"
   values_content = {  
-    mongoce = {
-      name = "mongo-ce"
-      crdname = var.crdname
-      saname = var.mongo_serviceaccount
-      namespace = var.namespace
-      mongocesecret = {
-          crt =  base64encode("${local_file.srvcrtfile.sensitive_content}")
-          key = base64encode("${local_file.srvkeyfile.sensitive_content}")
-
-        }
-      mongocecm = {
-        cacrt = "${tls_self_signed_cert.ca.cert_pem}"
-      }
-    }    
+    name = "mongo-ce"
+    saName = var.mongo_serviceaccount
+    mongocesecret = {
+      crt =  base64encode(local_file.srvcrtfile.sensitive_content)
+      key = base64encode(local_file.srvkeyfile.sensitive_content)
+    }
+    mongocecm = {
+      cacrt = tls_self_signed_cert.ca.cert_pem
+    }
   }
   layer = "services"
   type  = "base"
@@ -170,14 +165,11 @@ module "service_account" {
       "monitoring.coreos.com",
       "rbac.authorization.k8s.io",
       "mongodbcommunity.mongodb.com",
-      "security.openshift.io",
-
-
+      "security.openshift.io"
     ]
     resourceNames = [
       "mongodb-kubernetes-operator",
       "${var.namespace}-${var.mongo_serviceaccount}-anyuid"
-
     ]
     resources = [
       "pods",
@@ -206,7 +198,6 @@ module "service_account" {
        "mongodbcommunity/spec",
        "mongodbcommunity/finalizers",
        "securitycontextconstraints"
-       
     ]
     verbs = [
       "*"

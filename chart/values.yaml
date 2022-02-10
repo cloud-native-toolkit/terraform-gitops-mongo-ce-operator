@@ -1,2 +1,12 @@
-mongo-ce:
-  name: "mongo-ce"
+name: "mongo-ce"
+
+mongocecm:
+  cacrt: ""
+
+rbac: true
+
+saName: "mongo-ce"
+
+mongocesecret:
+  key: ""
+  crt: ""
