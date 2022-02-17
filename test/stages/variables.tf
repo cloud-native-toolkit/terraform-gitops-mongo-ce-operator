@@ -5,9 +5,14 @@ variable "resource_group_name" {
   description = "Existing resource group where the IKS cluster will be provisioned."
 }
 
-variable "ibmcloud_api_key" {
+variable "cluster_username" { 
   type        = string
-  description = "The api key for IBM Cloud access"
+  description = "The username for AWS access"
+}
+
+variable "cluster_password" {
+  type        = string
+  description = "The password for AWS access"
 }
 
 variable "server_url" {
