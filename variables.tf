@@ -80,15 +80,9 @@ variable "server_name" {
   default     = "default"
 }
 
-variable "cluster_config_file" {
-  type        = string
-  description = "Cluster config file for Kubernetes cluster."
-}
-
 variable "mongo_storageclass" {
   type        = string
   description = "Storageclass for MongoDB"
-  default = "ibmc-vpc-block-10iops-tier"
 }
 
 variable "mongo_serviceaccount" {
