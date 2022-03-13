@@ -43,7 +43,7 @@ versions:
         moduleRef:
           id: gitops
           output: sealed_secrets_cert
-      - name: kafka_storage_class
+      - name: mongo_storageclass
         moduleRef:
           id: sc-manager
-          outout: mongo_storageclass
+          outout: block_storage_class
