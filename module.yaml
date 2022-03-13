@@ -18,6 +18,10 @@ versions:
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
             version: '>= 1.0.0'
+      - id: sc-manager
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-util-storage-class-manager.git
+            version: '>= 1.0.0'
     variables:
       - name: gitops_config
         moduleRef:
@@ -39,3 +43,7 @@ versions:
         moduleRef:
           id: gitops
           output: sealed_secrets_cert
+      - name: kafka_storage_class
+        moduleRef:
+          id: sc-manager
+          outout: mongo_storageclass

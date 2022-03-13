@@ -3,6 +3,20 @@
 GIT_REPO=$(cat git_repo)
 GIT_TOKEN=$(cat git_token)
 
+BIN_DIR=$(cat .bin_dir)
+
+export PATH="${BIN_DIR}:${PATH}"
+
+if ! command -v kubectl 1> /dev/null 2> /dev/null; then
+  echo "kubectl cli not found" >&2
+  exit 1
+fi
+
+if ! command -v jq 1> /dev/null 2> /dev/null; then
+  echo "jq cli not found" >&2
+  exit 1
+fi
+
 export KUBECONFIG=$(cat .kubeconfig)
 NAMESPACE=$(cat .namespace)
 COMPONENT_NAME=$(jq -r '.name // "mongo-ce"' gitops-output.json)

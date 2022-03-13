@@ -6,6 +6,5 @@ module "gitops_module" {
   server_name = module.gitops.server_name
   namespace = module.gitops_namespace.name
   kubeseal_cert = module.gitops.sealed_secrets_cert
-  mongo_storageclass = var.mongo_storageclass
+  mongo_storageclass = module.sc_manager.block_storage_class
 }
-
