@@ -80,25 +80,8 @@ variable "server_name" {
   default     = "default"
 }
 
-variable "mongo_storageclass" {
-  type        = string
-  description = "Storageclass for MongoDB"
-}
-
 variable "mongo_serviceaccount" {
   type        = string
   description = "Name of the service account to use for mongo"
   default = "mongodb-kubernetes-operator"
-}
-
-variable "mongo_password" {
-  type        = string
-  description = "admin password for mongodb"
-  default = "changeMechange01"
-}
-
-variable "mongo_version" {
-  type        = string
-  description = "version for mongodb to be installed"
-  default = "4.2.6"
 }
