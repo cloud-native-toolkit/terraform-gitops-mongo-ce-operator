@@ -87,14 +87,3 @@ variable "gitops_namespace" {
 
 variable "git_username" {
 }
-variable "mongo_storageclass" {
-  type        = string
-  description = "Storageclass for MongoDB"
-  default = "ibmc-vpc-block-10iops-tier"
-}
-
-variable "mongo_serviceaccount" {
-  type        = string
-  description = "Name of the service account to use for mongo"
-  default = "mongodb-kubernetes-operator"
-}
