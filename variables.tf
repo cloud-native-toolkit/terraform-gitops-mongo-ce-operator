@@ -66,6 +66,7 @@ variable "git_credentials" {
 variable "namespace" {
   type        = string
   description = "The namespace where the mongo-ce should be deployed"
+  default     = "mongo"
 }
 
 variable "kubeseal_cert" {
